@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login </title>
+</head>
+
+<body>
+    <main>
+        <div class="login-container">
+            <img src="/images/go.png">
+
+            <div class="form-container">
+                <h2>Welcome Back</h2>
+                <form action="/login" method="POST" class="login-form">
+                    <input type="text" name="IdentityNo" placeholder="Identity No" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button>Login</button>
+
+                </form>
+            </div>
+
+        </div>
+    </main>
+    <!-- <script src="../assets/script.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        const select = (e) => document.querySelector(e);
+        const selectAll = (e) => document.querySelectorAll(e);
+        const selectWith = (p, e) => p.querySelector(e);
+        const selectAllWith = (p, e) => p.querySelectorAll(e);
+        const create = (e) => document.createElement(e);
+        const root = (e) => getComputedStyle(select(":root")).getPropertyValue(e);
+        const getStyle = (e, style) => window.getComputedStyle(e)[style];
+
+        const preventDefault = (event) => event.preventDefault();
+
+
+        const form = select(".login-form");
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const info = selectAll(".login-form input");
+            const user = info[0].value;
+            const password = info[1].value;
+            const studentPattern = /^\d{2}\/\d{4}$/;
+            const adminPattern = /^BU\d{5}$/;
+
+            axios({
+                method: 'post',
+                url: '/login',
+                data: {
+                    user:user,
+                    password: password
+                }
+            }).then((response) => {
+                console.log(response);
+              window.location.href = response.data
+            }).catch((error) => {
+                console.log(error);
+            });
+          
+        })
+                
+
+
+
+    </script>
+</body>
+
+</html>

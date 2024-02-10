@@ -1,0 +1,38 @@
+require('./src/config/dbConfig');// allows access to .env files 
+
+const express = require('express');
+const router = require('./src/routes/routes');
+const axios = require('axios')
+const session = require('express-session');
+const PORT = process.env.PORT ;
+const path = require('path');
+const app = express();
+
+app.use(express.json());
+//app.use(express.urlencoded({encoded:true}))
+
+app.use(express.static(path.join(__dirname,'src/assets')))
+
+//set template engine
+app.set('view engine', 'ejs');
+app.set('views',path.join(__dirname, '/src/views'))
+
+//route prefix
+app.use(router);
+
+app.use('/', (req, res)=>{
+    res.send("Welcome to Registration")
+   // console.log(path.join(__dirname, 'views'))
+    //console.log(__dirname)
+})
+
+
+// app.use(
+//     session({
+//     secret: "my secret key",
+//     saveUninitialised: true,
+//     resave: false,
+// })
+// );
+app.listen(PORT,()=>{
+    console.log('listening on port', PORT)})
