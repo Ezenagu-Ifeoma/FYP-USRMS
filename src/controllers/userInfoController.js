@@ -26,19 +26,26 @@ exports.validateUser = async (req, res) => {
         const studentPattern = /^\d{2}\/\d{4}$/;
         const adminPattern = /^BU\/\d{5}$/;
         const studentChecker = await studentInfoModel.find({ MatricNo: user })
-        const adminChecker = await adminInfoModel.find({ adminNo: user})
-
-        if (!studentChecker) return res.send("student not found")   
-        if (!adminChecker) return res.send("student not found")
-
-
-        if(studentPattern.test(user) && studentChecker[0].password === password) return res.send('/student')
-
-        if(adminPattern.test(user) && adminChecker[0].password === password) return res.send('/admin')
-
+        const adminChecker = await adminInfoModel.find({ adminNo: user })
+        const student = studentChecker[0].StudentName
+        const studentId = studentChecker[0]._id 
         
-    }catch (err) {
+        const studentUrl = '/student'
+        const adminUrl = '/admin';
+
+        if (!studentChecker) return res.send("student not found")
+        if (!adminChecker) return res.send("student not found")
+        
+        req.session.uid = studentChecker[0]._id
+
+        if (studentPattern.test(user) && studentChecker[0].password === password) return res.send({ studentUrl, studentChecker })
+
+        if (adminPattern.test(user) && adminChecker[0].password === password) return res.send('/admin')
+
+    } catch (err) {
+        console.log(err);
         res.status(404).json({ message: "page not seen" });
 
     }
-} 
+}
+

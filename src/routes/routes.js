@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { newStudent, newAdmin, validateUser } = require('../controllers/userInfoController')
+const { newStudent, newAdmin, validateUser, getUser } = require('../controllers/userInfoController')
+const studentInfoModel = require('../models/studentInfo');
 
 router.get('/', (req, res) => {
     res.render('index', { name: "Home Page" })
@@ -12,11 +13,20 @@ router.get('/login', (req, res) => {
 
 router.post('/login', validateUser)
 
-router.get('/student', (req, res) => {
-    res.render('student-main', {
-       title: "student Page"
-    })
+router.use((req,res,next)=>{
+    if(!req.session.uid) return res.redirect('/login')
+    next();
 })
+
+ router.get('/student',async (req, res)=>{
+    const studentChecker = await studentInfoModel.find({ _id: req.session.uid })
+
+    res.render('student-main',{title: "usrms ", student: studentChecker[0].StudentName});
+ })
+
+
+    
+
 
 router.get('/admin', (req, res) => {
     res.render('admin-main', {
