@@ -8,12 +8,11 @@ const getStyle = (e, style) => window.getComputedStyle(e)[style];
  const preventDefault = (event) => event.preventDefault();
 
 const sideLinks = selectAll('.sidebar .side-menu li a:not(.logout)');
-
+console.log(sideLinks.parentElement)
 sideLinks.forEach((e) => {
     const li = e.parentElement;
-    console.log(li)
-    e.addEventListener("click", () => {
-        sideLinks.forEach(item => item.parentElement.classList.remove('active'));
+        e.addEventListener("click", () => {
+        li.forEach( item => item.parentElement.classList.remove('active'));
     })
     li.classList.add('active');
 });

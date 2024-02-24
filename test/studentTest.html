@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Document</title>
+    <link rel="stylesheet" href="studentTest.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+    <!-- sidebar -->
+    <div class="sidebar   ">
+        <a href="#" class="logo">
+            <i class='fas fa-school'></i>
+            <div class="logo-name"><span>UHMS</span></div>
+        </a>
+
+
+        <ul class="side-menu">
+            <li class="active"><a href="#"> <i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+            <li><a href="#"><i class='fas fa-address-card'></i>Registration</a></li>
+            <li><a href="#"><i class='fas fa-clipboard-list'></i>Exeat</a></li>
+            <li><a href="#"><i class='fas fa-credit-card'></i>Payment</a></li>
+            <li><a href="#"><i class='fas fa-circle-info'></i>Support</a></li>
+
+        </ul>
+        <ul class="side-menu out">
+            <li><a href="# " class="logout"><i class='fas fa-arrow-right-from-bracket '></i>Logout</a> </li>
+        </ul>
+    </div>
+    <!-- end of sidebar -->
+
+    <!-- NavBar -->
+    <div class="content">
+        <nav>
+            <i class="fas fa-bars"></i>
+            <form action="">
+                <div class="form-input">
+                    <!-- <input type="search" placeholder="Search....">
+                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                </div>
+            </form>
+            <a href="#" class="user">
+                <%= student %>
+            </a>
+            <a href="#" class="notify">
+                <i class="fas fa-bell"></i>
+                <span class="count">12</span>
+            </a>
+            <a href="#" class="profile">
+                <img src="/images/go.png" alt="">
+            </a>
+        </nav>
+    </div>
+    <!-- end of navbar -->
+    <div class="holder">
+        <form action="" class="regForm">
+            <div class="resType">
+                <label for="">Resident Type</label>
+                <div class="resButton">
+                    <button>Classic <br><span>Description....</span></button>
+                    <button>Premium <br> <span>Description....</span></button>
+                    <button>Regular <br> <span>Description....</span></button>
+                </div>
+            </div>
+
+            <div class="table-info">
+                <label for="">Resident Info</label>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Residence ID</th>
+                            <th>Residence Name</th>
+                            <th>Room No</th>
+                            <th>Capacity</th>
+                            <th>Available</th>
+                            <th>Capacity</th>
+                            <th>Minimum Level</th>
+                            <th>Maximum Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </form>
+    </div>
+
+</body>
+
+</html>

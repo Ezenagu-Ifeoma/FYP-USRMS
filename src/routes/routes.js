@@ -21,7 +21,7 @@ router.use((req,res,next)=>{
  router.get('/student',async (req, res)=>{
     const studentChecker = await studentInfoModel.find({ _id: req.session.uid })
 
-    res.render('student-main',{title: "usrms ", student: studentChecker[0].StudentName});
+    res.render('student',{title: "Hall Management ", student: studentChecker[0].StudentName});
  })
 
 
