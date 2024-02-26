@@ -57,20 +57,26 @@
     <!-- end of navbar -->
     <div class="holder">
         <form action="" class="regForm">
+            <label for="">Resident Type</label>
             <div class="resType">
-                <label for="">Resident Type</label>
+
                 <div class="resButton">
-                    <button>Classic <br><span>Description....</span></button>
-                    <button>Premium <br> <span>Description....</span></button>
-                    <button>Regular <br> <span>Description....</span></button>
+                    <button class="active">Classic <br><span>click here to filter ></span></button>
+                    <button>Premium <br> <span>click here to filter ></span></button>
+                    <button>Regular <br> <span>click here to filter ></span></button>
+                    <button>Off Campus <br> <span>click here to filter ></span></button>
                 </div>
             </div>
 
+
+
+
+            <label for="">Resident Info</label>
             <div class="table-info">
-                <label for="">Resident Info</label>
                 <table>
                     <thead>
                         <tr>
+                            <th>Select</th>
                             <th>Residence ID</th>
                             <th>Residence Name</th>
                             <th>Room No</th>
@@ -79,26 +85,120 @@
                             <th>Capacity</th>
                             <th>Minimum Level</th>
                             <th>Maximum Level</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
+                            <td>1</td>
+                            <td>Samuel Akande</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
+                            <td>1</td>
+                            <td>Bethel Splendor</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
+            <label for="hostel">Hostel:</label>
+            <div class="hostel">
+                <div class="list-choice">
+                    <div class="list-choice-title">Select Block <span style="float: right; margin-top: -5px;"><i
+                                class="fas fa-sort-down"></i></span> </div>
+                    <div class="list-choice-objects">
+                        <label>
+                            <input type="radio" name="month" /> <span>Block A</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="month" /> <span>Block B</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="month" /> <span>Block C</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="month" /> <span>Block D</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="month" /> <span>Block E</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="month" /> <span>Block F</span>
+                        </label>
+                    </div>
+                </div>
+                </select>
+                <div class="roomNum">
+                    <label for="">Room No:</label>
+                    <input type="number" placeholder="1 - 32" class="num" min="1" max="32">
+                </div>
+                <div class="submitReg">
+                    <button type="submit">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
 
+            </div>
         </form>
+
     </div>
+
+
+
+
+    <!-- <label for="">Worship Center</label>
+                <div class="worshipCenter">
+                    <div class="table-info">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> </th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BreakFast Lunch and Supper</td>
+                                <td> food to take all day every day till you leave</td>
+                                <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
+                            </tr>
+                            <tr>
+                                <td>Lunch and Supper</td>
+                                <td> food to take all day every day till you leave</td>
+                                <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                </div> -->
+
+    </form>
+    </div>
+
 
 </body>
 

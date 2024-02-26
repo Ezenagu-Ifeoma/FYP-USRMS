@@ -96,7 +96,7 @@ body {
     height: 45px;
     background: transparent;
     margin-left: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     border-radius: 10px;
     padding: 5px;
 
@@ -121,9 +121,10 @@ body {
     transition: all 0.3s ease;
 }
 
-.sidebar .side-menu li a:hover {
+.sidebar .side-menu li:hover {
     transition: all 0.3s ease;
     background-color: var(--grey);
+
 }
 
 .sidebar.close .side-menu li a {
@@ -271,15 +272,232 @@ body {
     display: flex;
     gap: 20px;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    padding: 20px 0 0 20px;
+    padding: 20px 0 0 30px;
 }
-.regForm .resType .resButton{
+
+.regForm label {
+    font-size: 1.5rem;
+    color: var(--dark-grey);
+}
+
+.regForm .resType {
     display: flex;
-    font-size: 30px;
-    font-weight: 600
+    flex-direction: column;
+    gap: 10px;
 }
+
+.regForm .resType .resButton {
+    display: flex;
+    gap: 30px;
+}
+
+.regForm .resType .resButton button {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    font-weight: 600;
+    border: 1px solid var(--primary);
+    background-color: var(--light);
+    padding: 10px;
+    border-radius: 10px;
+    width: 15vw;
+}
+
+.regForm .resType .resButton button.active {
+    border-bottom: 10px solid var(--success);
+    transition: all 1s ease;
+}
+
+.regForm .resType .resButton button span {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.regForm .table-info {
+    height: auto;
+    padding: 10px;
+    border: 1px solid var(--primary);
+    width: fit-content;
+    border-radius: 10px;
+    background-color: var(--light);
+
+}
+
+.regForm .table-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+
+
+}
+
+
+.regForm .table-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.table-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.table-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.table-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+.table-info table tbody tr td .resSelect {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--primary)
+}
+
+input:checked {
+    color: var(--success);
+}
+
+.hostel{
+    display: flex;
+    align-items: center;
+    gap:10%;
+    width: 100%;
+  
+}
+.hostel .roomNum label{
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 500;
+}
+.hostel .roomNum .num{
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    padding: 10px;
+  
+}
+.hostel .submitReg{
+  margin-left:20% ;
+
+}
+
+.hostel .submitReg button{
+    padding: 10px;
+    border-radius:10px ;
+    background: var(--danger);
+    font-size: 20px;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    border: none;
+    
+}
+
+/* block Bootstrap Css   */
+.list-choice {
+    width: 300px;
+    position: relative;
+    cursor: pointer;
+}
+
+.list-choice input[type="radio"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.list-choice-title {
+    width: 100%;
+    display: block;
+    background: var(--light);
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 10px 10px 10px;
+    color: var(--primary);
+    text-shadow: 0 1px 0 #CACACA;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+}
+
+.list-choice:hover .list-choice-title {
+    border-radius: 0.2em 0.2em 0 0;
+}
+
+.list-choice-objects label:nth-last-of-type(1) span {
+    border-radius: 0 0 0.2em 0.2em;
+}
+
+.list-choice input[type="radio"]+span {
+    color: var(--primary);
+    background: var(--light);
+    padding: 0 0 5px 0;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+}
+
+.list-choice-objects {
+    position: absolute;
+    top: 0;
+    padding-top: 2.1em;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    transition: all 250ms ease;
+}
+
+.list-choice:hover .list-choice-objects input[type="radio"]+span {
+    position: relative;
+    top: 15px;
+    transition: all 250ms ease-in-out;
+}
+
+.list-choice:hover input[type="radio"]+span:hover {
+    background: var(--dark-grey);
+}
+
+.list-choice:hover input[type="radio"]:checked+span:hover {
+    background: var(--success);
+}
+
+.list-choice input[type="radio"]:checked+span {
+   font-weight: 600;
+    position: absolute;
+    top: 0;
+    border-radius:5px;
+    border: 1px solid var(--primary);
+}
+
+.list-choice:hover input[type="radio"]:checked+span {
+    border-radius: 0;
+}
+
+.list-choice:hover .list-choice-objects label:nth-last-of-type(1) input[type="radio"]:checked+span {
+    border-radius: 0 0 0.2em 0.2em;
+}
+
+.list-choice:hover .list-choice-objects {
+    max-height: 540px;
+}
+
+
+
+/* end of css block */
+
 @media (min-width:475px) {}
 
 @media (min-width:640px) {}
