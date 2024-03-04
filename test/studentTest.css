@@ -266,8 +266,12 @@ body {
     height: 100vh;
     float: right;
     width: calc(100% - 250px);
+    padding: 10px;
 }
-
+.holder .holder-jnr{
+  
+    padding: 10px;
+}
 .regForm {
     display: flex;
     gap: 20px;
@@ -282,45 +286,57 @@ body {
     color: var(--dark-grey);
 }
 
+
 .regForm .resType {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--primary); 
+    width: fit-content;
+
+}
+.regForm .resType span{
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 50px;
 }
 
 .regForm .resType .resButton {
     display: flex;
-    gap: 30px;
+    justify-content: flex-end;
+    gap: 10px;
+   
+    
 }
 
 .regForm .resType .resButton button {
     display: flex;
     flex-direction: column;
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
     border: 1px solid var(--primary);
     background-color: var(--light);
-    padding: 10px;
-    border-radius: 10px;
-    width: 15vw;
+    border-radius: 5px;
+    width: fit-content;
+    height: 30px;
+    padding: 3px 5px 0 5px;       
 }
 
 .regForm .resType .resButton button.active {
-    border-bottom: 10px solid var(--success);
+    background:var(--light-success);
     transition: all 1s ease;
 }
 
-.regForm .resType .resButton button span {
-    font-size: 12px;
-    font-weight: 300;
-}
+
 
 .regForm .table-info {
     height: auto;
     padding: 10px;
     border: 1px solid var(--primary);
     width: fit-content;
-    border-radius: 10px;
+    border-radius:0 0 5px 5px ;
     background-color: var(--light);
 
 }

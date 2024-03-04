@@ -1,6 +1,7 @@
 const studentInfoModel = require('../models/studentInfo');
 const adminInfoModel = require('../models/adminInfo');
-const residence = require('../models/residence')
+const residenceModel = require('../models/residence');
+const { getAllResidence } = require('../controllers/loginValidatorController')
 
 exports.newStudent = async (req, res) => {
     try {
@@ -32,7 +33,7 @@ exports.validateUser = async (req, res) => {
         const student = studentChecker[0].StudentName
         const studentId = studentChecker[0]._id
 
-        const studentUrl = '/student'
+        const studentUrl = '/index'
         const adminUrl = '/admin';
 
         if (!studentChecker) return res.send("student not found")
@@ -53,18 +54,25 @@ exports.validateUser = async (req, res) => {
 exports.studentInfo = async (req, res) => {
     try {
         const studentChecker = await studentInfoModel.find({ _id: req.session.uid });
-        res.render('student',{title: "Hall Management ", student: studentChecker[0].StudentName});
+        const allResidence = await residenceModel.find();
+        res.render('student', {
+            title: "Hall Management ",
+            student: studentChecker[0].StudentName,
+            res: allResidence,
+        });
+
     } catch (err) {
         console.log(err);
     }
 }
 
 exports.dashboardInfo = async (req, res) => {
-    try{
+    try {
         const studentChecker = await studentInfoModel.find({ _id: req.session.uid });
-        res.render('index',{title: "Hall Management ", student: studentChecker[0].StudentName});
+        res.render('index', { title: "Hall Management ", student: studentChecker[0].StudentName });
 
-    }catch (err) {
+
+    } catch (err) {
         console.log(err);
     }
 }

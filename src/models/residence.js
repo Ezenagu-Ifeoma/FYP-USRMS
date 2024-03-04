@@ -8,28 +8,56 @@ const residenceSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    residenceType:{
+    residenceType: {
         type: String,
         required: true,
     },
-       capacity: {
-        type: String,
-        required: true,
+    capacity: {
+        type: Number,
+        
     },
     availableSpace: {
-        type: String,
-        required: true,
+        type: Number,
+        
     },
     minlevel: {
-        type: String,
+        type: Number,
         required: true,
     },
     maxLevel: {
-        type: String,
+        type: Number,
         required: true,
     },
+    number_of_blocks: {
+        type: Number,
+        required: true,
+    },
+    blocks: [
+        {
+            block_letter: {
+                type: String,
+                required: true,
+            },
+            number_of_rooms: {
+                type: Number,
+                required: true,
+            },
+            rooms: [
+                {
+                    room_number: {
+                        type: Number,
+                        required: true,
+                    },
+                    students: [{
+                        type: mongoose.Schema.ObjectId,
+                        ref: 'studentInfo',
+                    }]
+                }
+            ]
+        }
+    ]
 
-})
+});
 
 const residenceModel = mongoose.model('residence', residenceSchema);
 module.exports = residenceModel;

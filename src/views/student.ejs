@@ -12,118 +12,169 @@
     <%- include('layout/sideBar') %>
         <div class="holder">
             <form action="" class="regForm">
-                <label for="">Resident Type</label>
                 <div class="resType">
-
                     <div class="resButton">
                         <button class="active">Classic <br><span>click here to filter ></span></button>
                         <button>Premium <br> <span>click here to filter ></span></button>
                         <button>Regular <br> <span>click here to filter ></span></button>
-                        <button>Off Campus <br> <span>click here to filter ></span></button>
+
                     </div>
+                    <div class="table-info">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Residence ID</th>
+                                    <th>Residence Name</th>
+                                    <th>Residence Type</th>
+                                    <th>Capacity</th>
+                                    <th>Available Space</th>
+                                    <th>Minimum Level</th>
+                                    <th>Maximum Level</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% res.forEach((e)=> { %>
+                                    <tr>
+                                        <td><input type="checkbox" name="resSelect" class="resSelect"
+                                                data-id="<%= e.residenceID %>" id=""></td>
+                                        <td>
+                                            <%= e.residenceID %>
+                                        </td>
+                                        <td>
+                                            <%= e.residenceName %>
+                                        </td>
+                                        <td>
+                                            <%= e.residenceType %>
+                                        </td>
+                                        <td>
+                                            <%= e.capacity %>
+                                        </td>
+                                        <td>
+                                            <%= e.availableSpace %>
+                                        </td>
+                                        <td>
+                                            <%= e.minlevel %>
+                                        </td>
+                                        <td>
+                                            <%= e.maxLevel %>
+                                        </td>
+
+                                    </tr>
+                                    <% }) %>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
                 </div>
 
+                <div class="resType2">
+                    <div class="hostel">
 
+                        <div class="list-choice">
 
+                            <label for="" style="border: none; font-weight: 500; font-size: 20px;">Select
+                                Block</label>
+                            <label>
+                                <input type="radio" name="block" value="A" /> <span>A</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="block" value="B" /> <span> B</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="block" value="C" /> <span>C</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="block" value="D" /> <span>D</span>
+                            </label>
 
-                <label for="">Resident Info</label>
-                <div class="table-info">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Select</th>
-                                <th>Residence ID</th>
-                                <th>Residence Name</th>
-                                <th>Room No</th>
-                                <th>Capacity</th>
-                                <th>Available</th>
-                                <th>Capacity</th>
-                                <th>Minimum Level</th>
-                                <th>Maximum Level</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
-                                <td>1</td>
-                                <td>Samuel Akande</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="resSelect" class="resSelect" id=""></td>
-                                <td>1</td>
-                                <td>Bethel Splendor</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <label for="hostel">Hostel:</label>
-                <div class="hostel">
-                    <div class="list-choice">
-                        <div class="list-choice-title">Select Block <span style="float: right; margin-top: -5px;"><i
-                                    class="fas fa-sort-down"></i></span> </div>
-                        <div class="list-choice-objects">
-                            <label>
-                                <input type="radio" name="month" /> <span>Block A</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="month" /> <span>Block B</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="month" /> <span>Block C</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="month" /> <span>Block D</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="month" /> <span>Block E</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="month" /> <span>Block F</span>
-                            </label>
                         </div>
-                    </div>
-                    </select>
-                    <div class="roomNum">
-                        <label for="">Room No:</label>
-                        <input type="number" placeholder="1 - 32" class="num" min="1" max="32">
-                    </div>
-                    <div class="submitReg">
-                        <button type="submit">Next <i class="fas fa-arrow-right"></i></button>
+
+                        <div class="roomNum">
+                            <label for="">Room No:</label>
+                            <input type="number" name="roomNum" class="num" min="1" max="32">
+                        </div>
+
+                        <button type="submit" class="submitReg">next</button>
+
                     </div>
 
                 </div>
+
+
+
             </form>
 
         </div>
 
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <script>
+
+            const regForm = document.querySelector(".regForm");
 
 
 
+            function getCheckedRows() {
+                const checkedRows = {};
+
+                // Get all checkboxes
+                const checkboxes = document.querySelectorAll('.resSelect');
+
+                // Loop through each checkbox
+                checkboxes.forEach((checkbox) => {
+                    const row = checkbox.closest('tr');
+                    const rowID = checkbox.getAttribute('data-id');
+                    const rowText = Array.from(row.children).map(td => td.textContent.trim());
+                    console.log(rowText)
+                    checkedRows[rowID] = rowText;
+                });
+
+            return checkedRows;
+            }
+        
+
+
+            regForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(regForm);
+                const data = {
+                    tData: getCheckedRows()
+                };
+                formData.forEach(function (value, key) {
+                    data[key] = value;
+                });
+                const adminPattern = /^BU\d{5}$/;
+
+                axios({
+                    method: 'post',
+                    url: '/regStudent',
+                    data: {
+                        regData: data
+                    }
+                }).then((response) => {
+                    console.log('')
+
+                }).catch((error) => {
+                    console.log(error);
+                });
+
+
+
+
+
+
+            })
+
+
+
+
+
+        </script>
 </body>
 
 </html>
