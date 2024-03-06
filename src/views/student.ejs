@@ -1,180 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>student</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <%- include('layout/sideBar') %>
-        <div class="holder">
-            <form action="" class="regForm">
-                <div class="resType">
-                    <div class="resButton">
-                        <button class="active">Classic <br><span>click here to filter ></span></button>
-                        <button>Premium <br> <span>click here to filter ></span></button>
-                        <button>Regular <br> <span>click here to filter ></span></button>
-
-                    </div>
-                    <div class="table-info">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Select</th>
-                                    <th>Residence ID</th>
-                                    <th>Residence Name</th>
-                                    <th>Residence Type</th>
-                                    <th>Capacity</th>
-                                    <th>Available Space</th>
-                                    <th>Minimum Level</th>
-                                    <th>Maximum Level</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% res.forEach((e)=> { %>
-                                    <tr>
-                                        <td><input type="checkbox" name="resSelect" class="resSelect"
-                                                data-id="<%= e.residenceID %>" id=""></td>
-                                        <td>
-                                            <%= e.residenceID %>
-                                        </td>
-                                        <td>
-                                            <%= e.residenceName %>
-                                        </td>
-                                        <td>
-                                            <%= e.residenceType %>
-                                        </td>
-                                        <td>
-                                            <%= e.capacity %>
-                                        </td>
-                                        <td>
-                                            <%= e.availableSpace %>
-                                        </td>
-                                        <td>
-                                            <%= e.minlevel %>
-                                        </td>
-                                        <td>
-                                            <%= e.maxLevel %>
-                                        </td>
-
-                                    </tr>
-                                    <% }) %>
-
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                </div>
-
-                <div class="resType2">
-                    <div class="hostel">
-
-                        <div class="list-choice">
-
-                            <label for="" style="border: none; font-weight: 500; font-size: 20px;">Select
-                                Block</label>
-                            <label>
-                                <input type="radio" name="block" value="A" /> <span>A</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="block" value="B" /> <span> B</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="block" value="C" /> <span>C</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="block" value="D" /> <span>D</span>
-                            </label>
-
-                        </div>
-
-                        <div class="roomNum">
-                            <label for="">Room No:</label>
-                            <input type="number" name="roomNum" class="num" min="1" max="32">
-                        </div>
-
-                        <button type="submit" class="submitReg">next</button>
-
-                    </div>
-
-                </div>
-
-
-
-            </form>
-
+    <div class="holder">
+      <form action="" class="regForm">
+        <div class="resType">
+          <div class="resButton">
+            <button class="active">
+              Classic <br /><span>click here to filter ></span>
+            </button>
+            <button>
+              Premium <br />
+              <span>click here to filter ></span>
+            </button>
+            <button>
+              Regular <br />
+              <span>click here to filter ></span>
+            </button>
+          </div>
+          <div class="table-info">
+            <table>
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Residence ID</th>
+                  <th>Residence Name</th>
+                  <th>Residence Type</th>
+                  <th>Capacity</th>
+                  <th>Available Space</th>
+                  <th>Minimum Level</th>
+                  <th>Maximum Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% res.forEach((e)=> { %>
+                <tr>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name="resSelect"
+                      class="resSelect"
+                      data-id="<%= e.residenceID %>"
+                      id=""
+                    />
+                  </td>
+                  <td><%= e.residenceID %></td>
+                  <td><%= e.residenceName %></td>
+                  <td><%= e.residenceType %></td>
+                  <td><%= e.capacity %></td>
+                  <td><%= e.availableSpace %></td>
+                  <td><%= e.minLevel %></td>
+                  <td><%= e.maxLevel %></td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <div class="resType2">
+          <div class="hostel">
+            <div class="list-choice">
+              <label
+                for=""
+                style="border: none; font-weight: 500; font-size: 20px"
+                >Select Block</label
+              >
+              <label>
+                <input type="radio" name="block" value="A" /> <span>A</span>
+              </label>
+              <label>
+                <input type="radio" name="block" value="B" /> <span> B</span>
+              </label>
+              <label>
+                <input type="radio" name="block" value="C" /> <span>C</span>
+              </label>
+              <label>
+                <input type="radio" name="block" value="D" /> <span>D</span>
+              </label>
+            </div>
 
-        <script>
+            <div class="roomNum">
+              <label for="">Room No:</label>
+              <input
+                type="number"
+                name="roomNum"
+                class="num"
+                min="1"
+                max="32"
+              />
+            </div>
 
-            const regForm = document.querySelector(".regForm");
+            <button type="submit" class="submitReg">next</button>
+          </div>
+        </div>
+      </form>
+    </div>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+    <script>
+      const regForm = document.querySelector(".regForm");
+      const block = document.querySelector('input[type="radio"][name="block"]');
+      const roomNum = document.querySelector(".num").value;
 
-            function getCheckedRows() {
-                const checkedRows = {};
+      function getCheckedRows() {
+        const checkedRows = [];
 
-                // Get all checkboxes
-                const checkboxes = document.querySelectorAll('.resSelect');
+        // Get all checkboxes
+        const checkboxes = document.querySelectorAll(".resSelect");
 
-                // Loop through each checkbox
-                checkboxes.forEach((checkbox) => {
-                    const row = checkbox.closest('tr');
-                    const rowID = checkbox.getAttribute('data-id');
-                    const rowText = Array.from(row.children).map(td => td.textContent.trim());
-                    console.log(rowText)
-                    checkedRows[rowID] = rowText;
-                });
+        // Loop through each checkbox
+        checkboxes.forEach((checkbox) => {
+          // Check if checkbox is checked
+          if (checkbox.checked) {
+            // Retrieve data attributes from the row
+            const row = checkbox.closest("tr");
+            const rowData = {
+              id: checkbox.getAttribute("data-id"),
+              name: row.cells[2].textContent.trim(),
+              capacity: row.cells[4].textContent.trim(),
+              type: row.cells[3].textContent.trim(),
+              space: row.cells[5].textContent.trim(),
+              minlvl: row.cells[6].textContent.trim(),
+              maxlvl: row.cells[7].textContent.trim(),
+            //   block: block ? block.value : null,
+            //   roomNum: roomNum ? roomNum : null,
+            };
+            checkedRows.push(rowData);
+          }
+        });
 
-            return checkedRows;
-            }
-        
+        return checkedRows;
+      }
 
+      regForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-            regForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+        const formData = new FormData(regForm);
+        const data = {
+          tData: getCheckedRows(),
+        };
+        formData.forEach( function (value, key ){
+            data[key] = value
+        })
 
-                const formData = new FormData(regForm);
-                const data = {
-                    tData: getCheckedRows()
-                };
-                formData.forEach(function (value, key) {
-                    data[key] = value;
-                });
-                const adminPattern = /^BU\d{5}$/;
-
-                axios({
-                    method: 'post',
-                    url: '/regStudent',
-                    data: {
-                        regData: data
-                    }
-                }).then((response) => {
-                    console.log('')
-
-                }).catch((error) => {
-                    console.log(error);
-                });
-
-
-
-
-
-
-            })
-
-
-
-
-
-        </script>
-</body>
-
+        axios({
+          method: "post",
+          url: "/regStudent",
+          data: {
+            regData: data,
+          },
+        })
+          .then((response) => {
+            alert("succesful registration")
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    </script>
+  </body>
 </html>

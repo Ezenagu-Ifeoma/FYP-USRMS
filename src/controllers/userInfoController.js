@@ -28,7 +28,8 @@ exports.validateUser = async (req, res) => {
         const { user, password } = req.body;
         const studentPattern = /^\d{2}\/\d{4}$/;
         const adminPattern = /^BU\/\d{5}$/;
-        const studentChecker = await studentInfoModel.find({ MatricNo: user })
+        const studentChecker = await studentInfoModel.find({MatricNo : user})
+       
         const adminChecker = await adminInfoModel.find({ adminNo: user })
         const student = studentChecker[0].StudentName
         const studentId = studentChecker[0]._id

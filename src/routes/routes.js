@@ -21,6 +21,7 @@ router.get('/login', (req, res) => {
 router.post('/login', validateUser)
 
 router.use((req, res, next) => {
+    // req.session.uid ="20/1903"
     if (!req.session.uid) return res.redirect('/login')
     next();
 })

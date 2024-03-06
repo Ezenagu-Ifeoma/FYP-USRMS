@@ -14,13 +14,13 @@ const residenceSchema = new mongoose.Schema({
     },
     capacity: {
         type: Number,
-        
+        required:true
     },
     availableSpace: {
         type: Number,
-        
+        required:true
     },
-    minlevel: {
+    minLevel: {
         type: Number,
         required: true,
     },
@@ -28,30 +28,32 @@ const residenceSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    number_of_blocks: {
+    numBlocks: {
         type: Number,
         required: true,
     },
     blocks: [
         {
-            block_letter: {
+            blockLetter: {
                 type: String,
                 required: true,
             },
-            number_of_rooms: {
+            numRooms: {
                 type: Number,
                 required: true,
             },
             rooms: [
                 {
-                    room_number: {
+                    roomNum: {
                         type: Number,
                         required: true,
                     },
-                    students: [{
-                        type: mongoose.Schema.ObjectId,
-                        ref: 'studentInfo',
-                    }]
+                    students: [
+                        {
+                            type: mongoose.Schema.Types.ObjectId ,
+                            ref: "studentInfo" 
+                        }
+                    ]
                 }
             ]
         }
