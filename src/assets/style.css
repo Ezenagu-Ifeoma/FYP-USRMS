@@ -40,6 +40,10 @@ body {
     background-color: var(--grey);
 }
 
+.none {
+    display: none;
+}
+
 .sidebar {
     position: fixed;
     z-index: 2000;
@@ -137,7 +141,7 @@ body {
 
 .sidebar .side-menu li a .fas {
     min-width: calc(60px - ((4px + 6px) * 2));
-    padding-right: 5px;
+
     display: flex;
     font-size: 1.6rem;
     justify-content: center;
@@ -467,10 +471,10 @@ input:checked {
     background-color: var(--success);
 }
 
-.hostel button{
+.hostel button {
     padding: 5px 20px 5px 20px;
     background-color: var(--primary);
-    border-radius:15px;
+    border-radius: 15px;
     border: 2px solid var(--success);
     color: var(--light);
 }
@@ -573,6 +577,200 @@ input:checked {
 
 /* end of css block */
 
+/* Exeat css */
+.exForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+
+}
+
+.exForm label {
+    font-size: 1.5rem;
+    color: var(--primary)
+}
+
+.exForm .exSec1 {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    height: 60vh;
+    width: 100%;
+
+
+
+}
+
+.exForm .exSec1 .exType {
+    display: flex;
+    padding-top: 20px;
+    gap: 50px;
+}
+
+.exForm .exSec1 .exType button {
+    padding: 10px;
+    background-color: var(--primary);
+    border-radius: 10px;
+    border: none;
+    color: var(--light);
+}
+
+.exForm .exSec1 .exType button.active {
+    background-color: var(--success);
+}
+
+.exForm .exSec1 .exInfo .WeekEnd {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    transition: 0.3s all ease;
+}
+
+.exForm .exSec1 .exInfo .WeekDay {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: 0.3s all ease;
+}
+
+.exForm .exSec1 .exInfo .LongTerm {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: 0.3s all ease;
+}
+
+.dater {
+    display: flex;
+    gap: 30px;
+}
+
+.dater label {
+    font-size: 15px;
+
+}
+
+.dater input[type="date"] {
+    padding: 10px;
+    width: 230px;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    outline: none;
+}
+
+.fileInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.fileInfo label {
+    font-size: 15px;
+
+}
+
+.fileInfo .fileInfo-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.fileInfo .fileInfo-1 textarea {
+    width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--primary);
+}
+
+.fileInfo .fileInfo-2:hover+.text {
+    transition: 0.5s all ease;
+    display: block;
+
+}
+
+.exForm .exSec2 button {
+    background-color: var(--primary);
+    padding: 10px;
+    color: var(--light);
+    float: right;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid var(--primary);
+    margin-right: 50px;
+
+}
+
+
+
+
+
+/* end of exeat css */
+
+/* status css */
+
+.statForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+}
+
+.statForm .regTable-info {
+    height: auto;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    width: fit-content;
+    border-radius: 5px;
+    background-color: var(--light);
+}
+
+.statForm .regTable-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+
+
+}
+
+
+.statForm .regTable-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.regTable-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.regTable-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.regTable-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+/* end of status css */
 
 
 @media (min-width:475px) {}

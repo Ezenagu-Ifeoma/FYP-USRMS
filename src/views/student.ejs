@@ -10,19 +10,17 @@
   <body>
     <%- include('layout/sideBar') %>
     <div class="holder">
-      <form action="" class="regForm">
+      <form action class="regForm">
         <div class="resType">
           <div class="resButton">
             <button class="active">
-              Classic <br /><span>click here to filter ></span>
+              Classic
             </button>
             <button>
-              Premium <br />
-              <span>click here to filter ></span>
+              Premium
             </button>
             <button>
-              Regular <br />
-              <span>click here to filter ></span>
+              Regular
             </button>
           </div>
           <div class="table-info">
@@ -48,8 +46,7 @@
                       name="resSelect"
                       class="resSelect"
                       data-id="<%= e.residenceID %>"
-                      id=""
-                    />
+                      id />
                   </td>
                   <td><%= e.residenceID %></td>
                   <td><%= e.residenceName %></td>
@@ -69,10 +66,9 @@
           <div class="hostel">
             <div class="list-choice">
               <label
-                for=""
-                style="border: none; font-weight: 500; font-size: 20px"
-                >Select Block</label
-              >
+                for
+                style="border: none; font-weight: 500; font-size: 20px">Select
+                Block</label>
               <label>
                 <input type="radio" name="block" value="A" /> <span>A</span>
               </label>
@@ -88,14 +84,13 @@
             </div>
 
             <div class="roomNum">
-              <label for="">Room No:</label>
+              <label for>Room No:</label>
               <input
                 type="number"
                 name="roomNum"
                 class="num"
                 min="1"
-                max="32"
-              />
+                max="32" />
             </div>
 
             <button type="submit" class="submitReg">next</button>

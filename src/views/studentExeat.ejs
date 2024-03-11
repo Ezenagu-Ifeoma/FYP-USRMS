@@ -1,13 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>student</title>
-</head>
-<body>
-    <%- include('layout/sideBar') %>
-    <h1>EXEAT</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>student</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+    <body>
+        <%- include('layout/sideBar') %>
+        <div class="holder">
+            <form action class="exForm">
+                <label for><i class="fas fa-file-alt"></i>   Exeat Request</label>
+           
+                    <section class="exSec1">
+                        <div class="exType" data-avoid>
+                               <button class="exbtn" data-trigger = "weekend">
+                                Weekend Pass
+                            </button>
+                            <button class="exbtn" data-trigger="weekday">
+                                Weekly Pass
+                            </button>
+                         
+                            <button class="exbtn" data-trigger="longterm">
+                                Long-Term Pass
+                            </button>
+                        </div>
+                        <div class="exInfoWeekEnd none " id="weekend">
+                              <div class="dater ">
+     
+                                    <div class="dater-1">
+                                        <label for="startDate">Start Date</label><br>
+                                        <input type="date" name="startDate" class="startDate" id="startDate">
+                                    </div>
+                                    <div class="dater-2">
+                                        <label for="endDate">End Date</label><br>
+                                        <input type="date" name="endDate" class="endDate" id="endDate">        
+                                    </div>
+                     
+                              </div><br>
+
+                            <div class="fileInfo">
+
+                                   <div class="fileInfo-1">
+                                    <label for="leavePurpose">REASON FOR PASS(optional)</label>
+                                    <textarea name="comment" placeholder="describe the reason for leave" class="comment" id="comment" cols="20" rows="5"></textarea>
+                                   </div>
+
+                                   <div class="fileInfo-2">
+                                    <label for="signedFile"><b>signed Letter:</b></label>
+                                    <input type="file" name="signedFile" class="sf">
+    
+                                   </div>
+                                </div>
+
+                        </div>
+                        <div class="exInfoWeekDay none" id="weekday">
+                            <div class="dater">
+
+                               <div class="dater-1">
+                                <label for="startDate">Start Date</label><br>
+                                <input type="date" name="startDate" class="startDate" id="startDate">
+                               </div>
+
+                         <div class="dater-2">
+                            <label for="endDate"> End Date </label><br>
+                            <input type="date" name="endDate"class="endDate" id="endDate"> 
+                         </div>   
+                                                          <!-- <label for="days"><span>Days</span><h1>3</h1></label> -->
+                            </div><br>
+
+                            <div class="fileInfo">
+
+                                <div class="fileInfo-1">
+                                     <label for="leavePurpose">REASON FOR PASS(optional)</label> 
+                                     <textarea  name="comment" placeholder="describe the reason for leave" class="comment" id="comment" cols="20" rows="5"></textarea>    
+                                </div>
+                                <div class="fileInfo-2">
+                                     <label for="signedFile"><b>signed Letter</b></label>
+                                     <input type="file" name="signedFile" class="sf">
+                                </div>               
+                             </div>
+
+                        </div>
+                        <div class="exInfoLongTerm none" id="longterm">
+
+                           <div class="dater">
+
+                               <div class="dater-1">
+                                <label for="startDate">Start Date</label><br>
+                                <input type="date" name="startDate" class="startDate" id="startDate">
+                               </div>
+
+                         <div class="dater-2">
+                            <label for="endDate"> End Date </label><br>
+                            <input type="date" name="endDate"class="endDate" id="endDate"> 
+                         </div>   
+                                                          <!-- <label for="days"><span>Days</span><h1>3</h1></label> -->
+                            </div><br>
+
+                            <div class="fileInfo">
+
+                                <div class="fileInfo-1">
+                                     <label for="leavePurpose">REASON FOR PASS(optional)</label> 
+                                     <textarea  name="comment" placeholder="describe the reason for leave" class="comment" id="comment" cols="20" rows="5"></textarea>    
+                                </div>
+                                <div class="fileInfo-2">
+                                     <label for="signedFile"><b>signed Letter</b></label>
+                                     <input type="file" name="signedFile" class="sf">
+                                </div>               
+                             </div>
+
+                        
+                        </div>
+                    </section>
+
+                    <section class="exSec2">
+                        <button type="submit">Send request</button>
+                    </section>
+
+                </div>
+            </form>
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+        const exBtn = document.querySelectorAll('.exbtn')
+        
+
+        exBtn.forEach(button=> {
+            button.addEventListener('click', function(e){
+                e.preventDefault();
+
+                document.querySelectorAll(".exSec1 > div:not([data-avoid])").forEach(elem => {
+                    elem.classList.add("none")
+                })
+
+                document.querySelector(`#${this.dataset?.trigger}`).classList.remove('none');
+                handleActiveClick(this)
+     
+            })
+        })
+
+   function handleActiveClick(button){
+        exBtn.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    button.classList.add('active');
+
+   } 
+
+        </script>
+
+    </body>
 </html>

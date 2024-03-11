@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { newStudent, newAdmin, validateUser, studentInfo, dashboardInfo, getUser } = require('../controllers/userInfoController')
+const { newStudent, newAdmin, newSchool, validateUser, studentInfo, studentDashboardInfo, adminDashboardInfo, statusInfo } = require('../controllers/userInfoController')
 const { newResidence, regStudent } = require('../controllers/residenceController');
 const { exeatInfo } = require('../controllers/exeatController')
 
 router.post('/api/residenceInfo', newResidence)
 router.post('/api/adminInfo', newAdmin)
 router.post('/api/studentInfo', newStudent);
+router.post('/api/schoolInfo', newSchool)
 
 
 
@@ -26,11 +27,16 @@ router.use((req, res, next) => {
     next();
 })
 
-router.get('/index', dashboardInfo)
-router.get('/student', studentInfo)
+router.post('/regStudent', regStudent)
 
-router.post('/regStudent',regStudent)
-//  router.get('/exeat', exeatInfo)
+
+router.get('/index', studentDashboardInfo)
+router.get('/admin', adminDashboardInfo)
+router.get('/student', studentInfo)
+router.get('/exeat', exeatInfo)
+router.get('/status', statusInfo)
+
+
 
 
 
