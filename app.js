@@ -6,10 +6,12 @@ const axios = require('axios')
 const session = require('express-session');
 const PORT = process.env.PORT;
 const path = require('path');
+const fileUpload = require('express-fileupload')
 const app = express();
 
 app.use(express.json());
-//app.use(express.urlencoded({encoded:true}))
+// app.use(express.urlencoded({ encoded: true }))
+app.use(fileUpload())
 
 
 var sess = {

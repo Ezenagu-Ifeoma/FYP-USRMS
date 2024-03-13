@@ -59,6 +59,7 @@
                     password: password
                 }
             }).then((response) => {
+                console.log(response)
 
               if(response.data.studentUrl) return window.location.href = response.data.studentUrl
               if(response.data.adminUrl) return window.location.href = response.data.adminUrl

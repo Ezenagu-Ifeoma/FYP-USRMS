@@ -1,8 +1,10 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path')
 const router = express.Router();
 const { newStudent, newAdmin, newSchool, validateUser, studentInfo, studentDashboardInfo, adminDashboardInfo, statusInfo } = require('../controllers/userInfoController')
 const { newResidence, regStudent } = require('../controllers/residenceController');
-const { exeatInfo } = require('../controllers/exeatController')
+const { exeatInfo, exeatRequest } = require('../controllers/exeatController')
 
 router.post('/api/residenceInfo', newResidence)
 router.post('/api/adminInfo', newAdmin)
@@ -29,6 +31,13 @@ router.use((req, res, next) => {
 
 router.post('/regStudent', regStudent)
 
+
+
+
+router.post("/exeatRequest", exeatRequest);
+
+
+// router.post('/exeatRequest', upload.single('signedFile'), exeatRequest)
 
 router.get('/index', studentDashboardInfo)
 router.get('/admin', adminDashboardInfo)

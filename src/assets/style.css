@@ -772,6 +772,49 @@ input:checked {
 
 /* end of status css */
 
+/* admin CSS */
+.adminContainer {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+
+    padding: 20px 20px 0 30px;
+}
+
+.studentBoard {
+
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.studentBoard .boxInfo {
+    width: 250px;
+    height: 150px;
+    background-color: var(--light);
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.studentBoard .boxInfo span {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* ennd of admin CSS */
+
 
 @media (min-width:475px) {}
 

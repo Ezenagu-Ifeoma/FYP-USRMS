@@ -1,29 +1,33 @@
 const mongoose = require('mongoose');
-const adminInfoSchema= new mongoose.Schema({
-    adminNo:{
+const adminInfoSchema = new mongoose.Schema({
+    adminNo: {
         type: String,
-        required:true
+        required: true
     },
-    name:{
+    name: {
         type: String,
-        required:true
+        required: true
     },
-    phoneNumber:{
+    phoneNumber: {
         type: String,
-        required:true
+        required: true
     },
-    email:{
+    email: {
         type: String,
-        required:true
+        required: true
     },
-    position:{
+    position: {
         type: String,
-        required:true
+        required: true
     },
-    password:{
+    password: {
         type: String,
         require: true
 
+    },
+    residence: {
+        type: String,
+        required: true
     }
 })
 

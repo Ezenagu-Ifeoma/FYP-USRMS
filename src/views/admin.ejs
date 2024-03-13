@@ -3,12 +3,55 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>admin</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <%-include('layout/admin-sideBar')%>
+        <%- include('Layout/admin-sidebar' ) %>
+        <!-- total students -->
+        <% let totalStudents = 0; %>
+        <%= resInfo.length%>
+        <% for (let i = 0; i < resInfo.length; i++) { %>
+        <% const blocks = resInfo[i].blocks; %>
+        <% for (let j = 0; j < blocks.length; j++) { %>
+        <% const rooms = blocks[j].rooms; %>
+        <% for (let k = 0; k < rooms.length; k++) { %>
+        <% totalStudents += rooms[k].students.length; %>
+        <% } %>
+        <% } %>
+        <% } %>
+
+        <!-- available space -->
+        <% let space = resInfo[0].availableSpace - totalStudents %>
+
         <div class="holder">
-            Main Admin Dashboard
+            <div class="adminContainer">
+                <div class="studentBoard">
+                    <div class="boxInfo">
+                        <span>
+                            Registered Student
+                        </span>
+
+                        <span
+                            style="color:#388E3C;font-size: xx-large;font-weight: 800; "><%=
+                            totalStudents %> </span>
+                    </div>
+                    <div class="boxInfo">
+                        <span>
+                            Available Space
+                        </span>
+                        <span
+                            style="color:#388E3C;font-size: xx-large;font-weight: 800; "><%=
+                            space
+                            %>
+                        </span>
+                    </div>
+                    <div class="boxInfo"></div>
+                    <div class="boxInfo"></div>
+                </div>
+
+            </div>
+
         </div>
 
     </body>

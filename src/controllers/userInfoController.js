@@ -84,21 +84,20 @@ exports.validateUser = async (req, res) => {
         const adminUrl = '/admin';
 
         if (studentChecker.length === 0 && adminChecker.length > 0) {
-            const admin = adminChecker[0].name;
             req.session.uid = adminChecker[0]._id;
-        } else if (studentChecker.length > 0 && adminChecker.length === 0) {
-            const student = studentChecker[0].StudentName;
+            if (adminPattern.test(user) && adminChecker[0].password === password) {
+                return res.send({ adminUrl, adminChecker });
+            }
+        }
+
+        if (studentChecker.length > 0 && adminChecker.length === 0) {
             req.session.uid = studentChecker[0]._id;
-        } else {
+            if (studentPattern.test(user) && studentChecker[0].password === password) {
+                return res.send({ studentUrl, studentChecker });
+            }
+        }
+        else {
             return res.send("User not found");
-        }
-
-        if (studentPattern.test(user) && studentChecker[0].password === password) {
-            return res.send({ studentUrl, studentChecker });
-        }
-
-        if (adminPattern.test(user) && adminChecker[0].password === password) {
-            return res.send({ adminUrl, adminChecker });
         }
 
     } catch (err) {
@@ -125,6 +124,7 @@ exports.studentInfo = async (req, res) => {
 exports.studentDashboardInfo = async (req, res) => {
     try {
         const studentChecker = await studentInfoModel.find({ _id: req.session.uid });
+
         res.render('index', { title: "Hall Management ", student: studentChecker[0].StudentName });
 
 
@@ -135,8 +135,12 @@ exports.studentDashboardInfo = async (req, res) => {
 exports.adminDashboardInfo = async (req, res) => {
     try {
         const adminChecker = await adminInfoModel.find({ _id: req.session.uid });
-        res.render('admin', { title: "Hall Management ", admin: adminChecker[0].name });
+        const residence = await residenceModel.find({ residenceName: adminChecker[0].residence })
+        if (residence) {
 
+            res.render('admin', { title: "Exeat Management ", admin: adminChecker[0].name, resInfo: residence });
+
+        }
     } catch (err) {
         console.log(err);
     }

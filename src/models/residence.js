@@ -14,11 +14,11 @@ const residenceSchema = new mongoose.Schema({
     },
     capacity: {
         type: Number,
-        required:true
+        required: true
     },
     availableSpace: {
         type: Number,
-        required:true
+        required: true
     },
     minLevel: {
         type: Number,
@@ -31,6 +31,10 @@ const residenceSchema = new mongoose.Schema({
     numBlocks: {
         type: Number,
         required: true,
+    },
+    maxPerRoom: {
+        type: Number,
+        required: true
     },
     blocks: [
         {
@@ -50,8 +54,8 @@ const residenceSchema = new mongoose.Schema({
                     },
                     students: [
                         {
-                            type: mongoose.Schema.Types.ObjectId ,
-                            ref: "studentInfo" 
+                            type: mongoose.Schema.Types.ObjectId,
+                            ref: "studentInfo"
                         }
                     ]
                 }

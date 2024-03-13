@@ -11,7 +11,7 @@
     <body>
         <%- include('layout/sideBar') %>
         <div class="holder">
-            <form action class="exForm">
+            <form class="exForm" enctype="multipart/form-data" >
                 <label for><i class="fas fa-file-alt"></i>   Exeat Request</label>
            
                     <section class="exSec1">
@@ -19,6 +19,7 @@
                                <button class="exbtn" data-trigger = "weekend">
                                 Weekend Pass
                             </button>
+                             
                             <button class="exbtn" data-trigger="weekday">
                                 Weekly Pass
                             </button>
@@ -117,17 +118,17 @@
                     </section>
 
                     <section class="exSec2">
-                        <button type="submit">Send request</button>
+                        <button  type="submit">Send request</button>
                     </section>
 
                 </div>
             </form>
         </div>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script>
-        const exBtn = document.querySelectorAll('.exbtn')
+        const exBtn = document.querySelectorAll('.exbtn');
+        const exForm = document.querySelector(".exForm");
         
-
         exBtn.forEach(button=> {
             button.addEventListener('click', function(e){
                 e.preventDefault();
@@ -149,6 +150,31 @@
     button.classList.add('active');
 
    } 
+
+   
+  exForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(exForm);
+    const activeText = document.querySelector('.exbtn.active').textContent;
+    formData.append('requestType', activeText);
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    };
+
+    axios.post("/exeatRequest", formData, config)
+        .then((response) => {
+            console.log('Request sent successfully');
+            // Handle response as needed
+        })
+        .catch((error) => {
+            console.error('Error sending request:', error);
+            // Handle error as needed
+        });
+});
 
         </script>
 
