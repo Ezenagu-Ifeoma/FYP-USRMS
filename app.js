@@ -11,7 +11,11 @@ const app = express();
 
 app.use(express.json());
 // app.use(express.urlencoded({ encoded: true }))
-app.use(fileUpload())
+
+app.use(fileUpload({
+    createParentPath: true,
+    uploadDir: path.join(__dirname, 'uploads/')
+}))
 
 
 var sess = {

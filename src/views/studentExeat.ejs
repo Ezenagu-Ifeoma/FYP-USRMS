@@ -151,7 +151,7 @@
 
    } 
 
-   
+
   exForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -167,12 +167,12 @@
 
     axios.post("/exeatRequest", formData, config)
         .then((response) => {
-            console.log('Request sent successfully');
-            // Handle response as needed
+           if(response.data.url) return window.location.href = response.data.url
+            
         })
         .catch((error) => {
             console.error('Error sending request:', error);
-            // Handle error as needed
+            
         });
 });
 

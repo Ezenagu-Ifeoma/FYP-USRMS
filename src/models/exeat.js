@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 
-const exeatSchema = new Schema({
-    student: { type: Schema.Types.ObjectId, ref: 'Student', required: true },
+const exeatSchema = new mongoose.Schema({
+    student: { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     reason: { type: String, required: true },
     type: { type: String, required: true },
+    letterFileType: { type: String, required: true },
+    letterFileSize: { type: String, required: true },
+    letterFileName: { type: String, required: true },
     letterFileUrl: { type: String, required: true }
 });
 
