@@ -2,6 +2,7 @@ const studentInfoModel = require('../models/studentInfo');
 const adminInfoModel = require('../models/adminInfo');
 const residenceModel = require('../models/residence');
 const schoolInfoModel = require('../models/schoolnfo');
+const exeatModel = require('../models/exeat')
 const { getAllResidence } = require('../controllers/loginValidatorController')
 
 exports.newStudent = async (req, res) => {
@@ -149,9 +150,13 @@ exports.adminDashboardInfo = async (req, res) => {
 
 exports.statusInfo = async (req, res) => {
     try {
+        studentId = req.session.uid
         const studentChecker = await studentInfoModel.find({ _id: req.session.uid });
+        const exeatStatusInfo = await exeatModel.find({ student: studentId })
+        console.log(exeatStatusInfo)
         res.render('studentStatus', {
-            student: studentChecker[0].StudentName
+            studentInfo: studentChecker[0],
+            exeatInfo: exeatStatusInfo[0]
         })
 
 

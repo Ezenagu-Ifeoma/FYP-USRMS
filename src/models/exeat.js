@@ -9,7 +9,8 @@ const exeatSchema = new mongoose.Schema({
     letterFileType: { type: String, required: true },
     letterFileSize: { type: String, required: true },
     letterFileName: { type: String, required: true },
-    letterFileUrl: { type: String, required: true }
+    letterFileUrl: { type: String, required: true },
+    status: { type: String, default: 'pending' }
 });
 
 const exeatModel = mongoose.model('exeat', exeatSchema);
