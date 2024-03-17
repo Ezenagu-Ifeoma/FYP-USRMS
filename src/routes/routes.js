@@ -2,14 +2,15 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path')
 const router = express.Router();
-const { newStudent, newAdmin, newSchool, validateUser, studentInfo, studentDashboardInfo, adminDashboardInfo, statusInfo } = require('../controllers/userInfoController')
-const { newResidence, regStudent } = require('../controllers/residenceController');
+const { newStudent, newAdmin, newSchool, validateUser, studentInfo, studentDashboardInfo, adminDashboardInfo, statusInfo, adminRegistrationInfo, searchStudent, adminGetAllStudent } = require('../controllers/userInfoController')
+const { newResidence, regStudent, signedStudents } = require('../controllers/residenceController');
 const { exeatInfo, exeatRequest } = require('../controllers/exeatController')
 
 router.post('/api/residenceInfo', newResidence)
 router.post('/api/adminInfo', newAdmin)
 router.post('/api/studentInfo', newStudent);
 router.post('/api/schoolInfo', newSchool)
+
 
 
 
@@ -35,6 +36,7 @@ router.post('/regStudent', regStudent)
 
 
 router.post("/exeatRequest", exeatRequest);
+router.post('/signedStudents', signedStudents)
 
 
 // router.post('/exeatRequest', upload.single('signedFile'), exeatRequest)
@@ -44,7 +46,9 @@ router.get('/admin', adminDashboardInfo)
 router.get('/student', studentInfo)
 router.get('/exeat', exeatInfo)
 router.get('/status', statusInfo)
-
+router.get('/admin-studentReq', adminRegistrationInfo)
+router.get('/admin-studentAll', adminGetAllStudent)
+router.get('/search', searchStudent)
 
 
 

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>admin</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    </head>
+    <body>
+        <%- include('Layout/admin-sidebar' ) %>
+
+        <div class="holder">
+            <form action class="adminSignInForm">
+                <div class="top">
+                    <span><h1><b>Registration For The Semester</b></h1></span>
+                    <b style="font-size: 25px;">|</b>
+                    <i class="fas fa-search"></i>
+                    <span><input type="text" id="searchInput"
+                            placeholder="Search by Matric No"></span>
+                </div>
+                <div class="adminSignInTable-info">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th> ID</th>
+                                <th> Name</th>
+                                <th>Programme</th>
+                                <th>Level</th>
+                                <th>Address</th>
+                                <th>Block</th>
+                                <th>Room Number</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsBody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            //get all students from database
+          function getAllStudents() {
+            axios({
+            method: 'get',
+            url: '/admin-studentAll'
+            
+        })
+                .then(response => {
+                    stdInfo = response.data.studentData
+                    updateTable(stdInfo);
+                })
+                .catch((err) => {
+                    console.log('Error fetching data:', err);
+                });
+        }
+        // Call this function on page load to populate the table initially
+        getAllStudents();
+
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchQuery = this.value.trim();
+            if (searchQuery === '') {
+                getAllStudents(); // Call this function to reset the table to show all students
+            } else {
+                searchStudents(searchQuery);
+            }
+        });
+
+        function searchStudents(query) {
+           axios({
+            method:'get' ,
+            url:`/search?matricNo=${query}`
+        })
+           .then(response => {
+            console.log()
+            const newData =[]
+            newData.push( response.data.newStudentData)
+            console.log(newData)
+               if (newData.length > 0) {
+                updateTable(newData);
+            } else {
+                console.log('No data found for the query:', query);
+            }
+              })
+            .catch(error => {
+               console.error('Error fetching data:', error);
+              });
+        }
+
+// searchData function modified
+        
+
+        function updateTable(data) {
+        
+            const tableBody = document.getElementById('studentsBody');
+            tableBody.innerHTML = ''; // Clear existing rows
+            data.forEach((student, index) => {
+            const row = document.createElement('tr');
+            const room = student.rooms[0]; 
+
+        row.innerHTML = 
+        `   <td>${index + 1}</td>
+            <td>${student.studentInfo.MatricNo}</td>
+            <td>${student.studentInfo.StudentName}</td>
+            <td>${student.studentInfo.Programme}</td>
+            <td>${student.studentInfo.EntryLevel}</td>
+            <td>${student.studentInfo.Address}</td>
+            <td>${room.blockLetter}</td>
+            <td>${room.roomNumber}</td>
+            <td>
+                <button class="sign-in" onclick="signIn(this)" data-student-id="${student.studentId}">Sign In</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    })  
+
+    tableBody.querySelectorAll('.sign-in').forEach(signBtn => {
+        signBtn.addEventListener('click', (e) => {
+            e.preventDefault(); 
+
+            signBtn.classList.toggle('signed-in');
+            signBtn.textContent = signBtn.classList.contains('signed-in') ? 'Sign Out' : 'Sign In';
+        });
+    });
+
+}
+
+    function signIn(button) {
+        button.disabled = true; // Disable the button when clicked
+        const studentId = button.getAttribute('data-student-id');
+        const rowData = getClickedRowData(button); // Get row data
+        signInStudent(rowData, button); // Pass rowData and button element
+      }
+
+      function getClickedRowData(button) {
+        const checkedRows = [];
+        const row = button.closest('tr');
+        const rowData = {
+          id: button.getAttribute('data-student-id'),
+          matricNo: row.cells[1].textContent.trim(),
+          name: row.cells[2].textContent.trim(),
+          programme: row.cells[3].textContent.trim(),
+          level: row.cells[4].textContent.trim(),
+          address: row.cells[5].textContent.trim(),
+          block: row.cells[6].textContent.trim(),
+          roomNum: row.cells[7].textContent.trim(),
+        };
+        return rowData;
+      }
+
+      function signInStudent(studentInfo, button) {
+        console.log(studentInfo)
+        axios({
+            method:'post',
+            url:'/signedStudents',
+            data: studentInfo
+        })
+          .then(response => {
+            console.log('Student signed in successfully:', response.data);
+            button.disabled = false; // Enable the button after successful sign-in
+          })
+          .catch(error => {
+            console.error('Error signing in student:', error);
+            button.disabled = false; // Enable the button in case of error
+          });
+      }
+
+  </script>
+    </body>
+</html>

@@ -1,4 +1,5 @@
-const residenceModel = require("../models/residence");
+const residenceModel = require('../models/residence');
+const signedStudentModel = require('../models/signedStudents');
 
 const studentInfoModel = require('../models/studentInfo');
 
@@ -168,4 +169,39 @@ exports.regStudent = async (req, res) => {
     res.status(404).json({ message: err.message });
     console.log(err);
   }
+}
+
+exports.signedStudents = async (req, res) => {
+  try {
+    const students = req.body;
+    if (students) {
+      const signedchecker = await signedStudentModel.findOne({ studentId: students.id });
+      if (!signedchecker) {
+        const createSigner = await signedStudentModel.create({
+          studentId: students.id,
+          matricNo: students.matricNo,
+          name: students.name,
+          programme: students.programme,
+          level: students.level,
+          address: students.address,
+          block: students.block,
+          roomNum: students.roomNum,
+          status: 'active'
+        });
+        console.log('Student signed in:', createSigner);
+        res.status(200).json({ message: 'Student signed in successfully' });
+      } else {
+        console.log('Student already signed in');
+        res.status(409).json({ message: 'Student already signed in' });
+      }
+    } else {
+      res.status(400).json({ message: 'Invalid request body' });
+    }
+  } catch (err) {
+    console.error('Error signing in student:', err);
+    res.status(500).json({
+      message: 'Internal server err'
+    });
+  }
+
 }

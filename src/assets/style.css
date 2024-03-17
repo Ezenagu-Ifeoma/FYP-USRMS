@@ -343,7 +343,7 @@ body {
     height: auto;
     padding: 10px;
     border: 1px solid var(--primary);
-    width: fit-content;
+    width: 100%;
     border-radius: 0 0 5px 5px;
     background-color: var(--light);
 
@@ -353,6 +353,7 @@ body {
     background-color: var(--light);
     border-collapse: collapse;
     padding: 10px;
+    width: 100%;
 
 
 }
@@ -731,7 +732,7 @@ input:checked {
     height: auto;
     padding: 10px;
     border: 2px solid var(--primary);
-    width: fit-content;
+    width: 100%;
     border-radius: 5px;
     background-color: var(--light);
 }
@@ -740,7 +741,7 @@ input:checked {
     background-color: var(--light);
     border-collapse: collapse;
     padding: 10px;
-
+    width: 100%;
 
 }
 
@@ -813,7 +814,99 @@ input:checked {
     font-weight: 600;
 }
 
-/* ennd of admin CSS */
+/* admin signing students */
+
+.adminSignInForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+}
+
+.adminSignInForm .top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.adminSignInForm .top input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+
+}
+
+.adminSignInForm .adminSignInTable-info {
+    height: auto;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--light);
+}
+
+.adminSignInForm .adminSignInTable-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+
+
+}
+
+
+.adminSignInForm .adminSignInTable-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.adminSignInTable-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.adminSignInTable-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.adminSignInTable-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+
+}
+
+.adminSignInTable-info button {
+    background-color: var(--danger);
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: var(--light);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.adminSignInTable-info button:hover {
+    background-color: var(--dark);
+}
+
+button:disabled {
+    background-color: #FBC02D !important;
+    cursor: not-allowed;
+}
+
+.signed-in {
+    background-color: green !important;
+}
+
+/* end of admin CSS */
 
 
 @media (min-width:475px) {}

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const exeatSchema = new mongoose.Schema({
-    student: { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true },
+    student: { type: mongoose.Schema.Types.ObjectId, ref: 'studentinfos', required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     reason: { type: String, required: true },

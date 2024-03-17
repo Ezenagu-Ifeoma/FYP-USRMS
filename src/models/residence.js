@@ -55,7 +55,8 @@ const residenceSchema = new mongoose.Schema({
                     students: [
                         {
                             type: mongoose.Schema.Types.ObjectId,
-                            ref: "studentInfo"
+                            ref: "studentinfos",
+                            required: true
                         }
                     ]
                 }

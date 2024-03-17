@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <%- include('layout/sideBar') %>
+            <%- include('layout/sideBar') %>
         <div class="holder">
           
             <form action="" class="statForm">
@@ -23,9 +23,8 @@
             <table>
               <thead>
                 <tr>
-                  
+
                   <th>Student Name</th>
-                  <th>Request Type</th>
                   <th>Request status</th>
                   <th>Student status</th>
                   <th>Date of Entry</th>
@@ -33,14 +32,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>John Doe</td>
-                  <td>Registration</td>
-                  <td>pending...</td>
-                  <td>inactive</td>
-                  <td>currentDate()</td>
+                  <td><%= regInfo.name %></td>
+                  <% if(regInfo.status === 'active'){ %>
+                <td style="color: #388E3C; font-weight: 600; ">Approved</td>
+                  <% }else{ %>
+                  <td style="color:#FBC02D; font-weight: 600;">Pending...</td>
+                  <% } %>
+                  <td><%= regInfo.status %></td>
+                  <td><%= regInfo.createdAt %></td>
                 </tr>
-                
-                </tr>
+
               </tbody>
             </table>
           </div><br>
@@ -50,7 +51,7 @@
             <table>
               <thead>
                 <tr>
-                  
+
                   <th>Student Name</th>
                   <th>Request Type</th>
                   <th>Request status</th>
@@ -58,19 +59,25 @@
                   <th>Date of Entry</th>
                 </tr>
               </thead>
-              <tbody>
+              <!-- <tbody>
                 <tr>
-                  <td>John Doe</td>
-                  <td>Exeat</td>
-                  <td>pending...</td>
+                  <td><%= exeatInfo.student.StudentName %></td>
+                  <td><%= exeatInfo.type %></td>
+                  <% if(exeatInfo.status === 'pending'){ %>
+                     <td style="color:#FBC02D; font-weight: 600;"><%= exeatInfo.status%>...  </td>
+                  <% }else{ %>
+                     <td style="color: #388E3C; font-weight: 600; "><%= exeatInfo.status%></td>
+                    <% } %>
                   <td>inactive</td>
                   <td>currentDate()</td>
+
                 </tr>
-            
-              </tbody>
+
+              </tbody> -->
             </table>
           </div>
         </div>
+
             </form>
 
         </div>
