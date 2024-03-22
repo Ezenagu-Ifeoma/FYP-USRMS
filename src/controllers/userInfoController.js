@@ -99,6 +99,9 @@ exports.adminDashboardInfo = async (req, res) => {
     try {
         const adminChecker = await adminInfoModel.find({ _id: req.session.uid });
         const residence = await residenceModel.find({ residenceName: adminChecker[0].residence })
+        const studentInactive = await signedStudentsModel.find({ status: 'inactive' })
+        const signedStudents = await signedStudentsModel.find({ status: 'active' })
+
         if (residence) {
 
             res.render('admin', { title: "Exeat Management ", admin: adminChecker[0].name, resInfo: residence });
@@ -261,18 +264,30 @@ exports.statusInfo = async (req, res) => {
         const studentChecker = await studentInfoModel.find({ _id: req.session.uid });
         const regStatusInfo = await signedStudentsModel.find({ studentId: studentId })
         const exeatStatusInfo = await exeatModel.findOne({ student: studentId }).populate('student')
+        // console.log(regStatusInfo)
+        const formatDate = (date = '') => {
+            return date?.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+            }).split(" ").join(" - ");
+
+        }
         if (!exeatStatusInfo && regStatusInfo) {
             const toaster = "Exeat Status: No exeat Requet Sent"
             res.render('studentStatus', {
                 student: studentChecker[0].StudentName,
                 exeatInfo: toaster,
-                regInfo: regStatusInfo
+                regInfo: regStatusInfo,
+                regDate: formatDate(regStatusInfo[0].createdAt)
             })
         } else {
             res.render('studentStatus', {
                 student: studentChecker[0].StudentName,
                 exeatInfo: exeatStatusInfo,
-                regInfo: regStatusInfo
+                regInfo: regStatusInfo,
+                regDate: formatDate(regStatusInfo[0].createdAt),
+                exDate: [formatDate(exeatStatusInfo.startDate), formatDate(exeatStatusInfo.endDate)]
             })
         }
 
@@ -280,17 +295,6 @@ exports.statusInfo = async (req, res) => {
     } catch (err) {
         res.status(404).json({ message: err });
         console.log(err)
-
-    }
-}
-
-exports.regStatusInfo = async (req, res) => {
-    try {
-
-
-    } catch (err) {
-        res.status(404).json({ message: err });
-        console.log(err);
 
     }
 }

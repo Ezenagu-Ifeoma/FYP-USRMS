@@ -48,10 +48,10 @@ body {
     position: fixed;
     z-index: 2000;
     height: 100%;
-    padding-right: 5px;
     top: 0;
     left: 0;
     background-color: var(--light);
+    color: var(--light);
     width: 250px;
     overflow-x: hidden;
     scrollbar-width: none;
@@ -63,37 +63,24 @@ body {
     display: none;
 }
 
-.sidebar.close {
-    width: 60px;
-
-}
-
 .sidebar .logo {
-    font-size: 24px;
-    font-weight: 800;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--primary);
-    z-index: 500;
-    padding-bottom: 20px;
+    font-size: 40px;
+    font-weight: 800;
+
 }
 
-.sidebar .logo .logo-name {
-    margin-left: 5px;
-}
-
-.sidebar .logo .fas {
-    min-width: 60px;
-    display: flex;
-    justify-content: center;
-    font-size: 2.2rem;
-}
 
 .sidebar .side-menu {
     width: 100%;
     margin-top: 70px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
 }
 
@@ -109,6 +96,7 @@ body {
 
 .sidebar .side-menu li.active {
     background-color: var(--primary);
+    color: var(--light);
     position: relative;
 }
 
@@ -169,16 +157,18 @@ body {
     display: flex;
     align-items: center;
     gap: 24px;
-    position: sticky;
+    position: fixed;
+    margin-right: 70px;
     top: 0;
     left: 0;
     z-index: 1000;
     width: 100%;
+    border-bottom: 2px solid var(--primary);
 
 }
 
 .content nav a {
-    color: var(--dark);
+    color: var(--primary);
 }
 
 .content nav.fas .fa-bars {
@@ -274,7 +264,77 @@ body {
 .holder {
     height: 100vh;
     float: right;
+    padding-top: 50px;
     width: calc(100% - 250px);
+
+}
+
+/* student dashboard */
+.holder .contain {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.holder .contain h2 {
+    font-weight: 200;
+    font-size: 25px;
+
+    color: var(--dark-grey);
+}
+
+.dashSection1 {
+    background-color: var(--light);
+    padding: 10px;
+    display: flex;
+    height: 50%;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+
+}
+
+.dashSection1 .ds1 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashSection1 .ds1 span {
+    font-weight: 300;
+    font-size: 50px;
+}
+
+.dashSection1 .ds1 b {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.dashSection1 .dsimage {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashSection1 .dsimage img {
+    height: 100%;
+    width: 50%;
+}
+
+.dashSection2 {
+    background-color: var(--light);
+    padding: 10px;
+    display: flex;
+    height: 50%;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+
+}
+
+.dashSection2 b {
+    width: 100%;
 
 }
 
@@ -629,8 +689,8 @@ input:checked {
     height: 60px;
     display: flex;
     flex-direction: column;
-    gap: 0px;
-    transition: 0.3s all ease;
+    gap: 40px;
+    transition: 1.3s all ease;
 }
 
 .exForm .exSec1 .exInfo .WeekDay {
@@ -639,7 +699,8 @@ input:checked {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    transition: 0.3s all ease;
+    transition: 1.3s all ease;
+    position: relative;
 }
 
 .exForm .exSec1 .exInfo .LongTerm {
@@ -697,6 +758,20 @@ input:checked {
     display: block;
 
 }
+
+.description {
+    z-index: 1000;
+    float: right;
+    margin-top: -24.5%;
+    margin-left: 10%;
+    background-color: var(--light);
+    border: 2px solid var(--primary);
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.5s all ease-in;
+}
+
+
 
 .exForm .exSec2 button {
     background-color: var(--primary);
@@ -897,7 +972,7 @@ input:checked {
     background-color: var(--dark);
 }
 
-button:disabled {
+.adminSignInTable-info button:disabled {
     background-color: #FBC02D !important;
     cursor: not-allowed;
 }
@@ -906,7 +981,296 @@ button:disabled {
     background-color: green !important;
 }
 
+.adminRequestForm {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+}
+
+.adminRequestForm .top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.adminRequestForm .top input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+
+}
+
+.adminRequestForm .adminRequestTable-info {
+    height: auto;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--light);
+}
+
+.adminRequestForm .adminRequestTable-info table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+
+
+}
+
+
+.adminRequestForm .adminRequestTable-info table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+
+}
+
+.adminRequestTable-info table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.adminRequestTable-info table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.adminRequestTable-info table tbody tr td {
+    padding: 10px;
+    text-align: center;
+
+
+}
+
+.adminRequestTable-info table tbody tr td .action {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+}
+
+.adminRequestTable-info table tbody tr td button {
+    background-color: var(--warning);
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.adminRequestTable-info .action button {
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: var(--light);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.adminRequestTable-info .action .approve {
+    background-color: var(--success);
+    transition: background-color 0.3s ease;
+}
+
+.adminRequestTable-info .action .reject {
+    background-color: var(--danger);
+    transition: background-color 0.3s ease;
+}
+
+
+.adminRequestTable-info .action button:hover {
+    background-color: var(--dark);
+}
+
+.adminRequestTable-info .action button:disabled {
+    background-color: #FBC02D !important;
+    cursor: not-allowed;
+}
+
+.popup-container {
+    width: 100%;
+    height: 100%;
+    background-color: #BBF7D0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    /* Ensure popup is on top of other elements */
+
+}
+
+.popup {
+    background-color: var(--light);
+    width: 70%;
+    height: 65%;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup header {
+    font-size: 30px;
+    font-weight: 600;
+    height: 10%;
+    background-color: var(--primary);
+    color: var(--light);
+    border-radius: 10px;
+    padding-left: 5px;
+}
+
+.popup footer {
+    display: flex;
+    gap: 35%;
+    height: 70%;
+    padding-left: 5px;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.popup footer .split1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.popup footer .split2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.popup .travel {
+    display: flex;
+    gap: 5px;
+    padding-left: 5px;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.adminContainer {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: all 0.3 ease;
+    padding: 20px 20px 0 30px;
+
+}
+
+.adminContainer .adminInfo2 {
+    width: 100%;
+    height: 30%;
+
+}
+
+.adminContainer .adminInfo2 span {
+    font-size: 30px;
+    color: var(--dark-grey);
+
+}
+
+.adminContainer .adminInfo2 table {
+    background-color: var(--light);
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+}
+
+.adminContainer .adminInfo2 table thead tr th {
+    width: auto;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 10px;
+    align-items: center;
+    background-color: var(--light-primary);
+
+}
+
+.adminInfo2 table tbody tr:nth-child(even) {
+    background-color: var(--grey);
+}
+
+.adminInfo2 table tbody tr:nth-child(odd) {
+    background-color: var(--light);
+
+}
+
+.adminInfo2 table tbody tr td {
+    padding: 10px;
+    text-align: center;
+
+
+}
+
+
+/* #openPopupBtn {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+Responsive styles (optional)
+@media (max-width: 768px) {
+    .popup {
+        width: 90%;
+        height: 70%;
+    }
+}
+
+
+*/
 /* end of admin CSS */
+
+/* status css */
+
+.indicator {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    /* Initially hidden */
+}
+
+.green {
+    animation: fadeInOut 1.5s infinite;
+    background-color: green;
+
+}
+
+.red {
+    animation: fadeInOut 1.5s infinite;
+    background-color: red;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* end of status css */
 
 
 @media (min-width:475px) {}
@@ -944,8 +1308,9 @@ main {
 }
 
 .login-container img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
 .login-container .form-container .login-form {

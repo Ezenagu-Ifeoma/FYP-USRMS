@@ -27,19 +27,25 @@
                   <th>Student Name</th>
                   <th>Request status</th>
                   <th>Student status</th>
+                  <th>Indicator</th>
                   <th>Date of Entry</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><%= regInfo.name %></td>
-                  <% if(regInfo.status === 'active'){ %>
+                  <td><%= regInfo[0].name %></td>
+                  <% if(regInfo[0].status === 'active'){ %>
                 <td style="color: #388E3C; font-weight: 600; ">Approved</td>
                   <% }else{ %>
                   <td style="color:#FBC02D; font-weight: 600;">Pending...</td>
                   <% } %>
-                  <td><%= regInfo.status %></td>
-                  <td><%= regInfo.createdAt %></td>
+                  <td><%= regInfo[0].status %></td>
+                  <% if(regInfo[0].status === 'active'){ %>
+                  <td ><span class="indicator green"></span></td>
+                  <% } else { %>
+                  <td ><span class="indicator red"></span></td>
+                  <% } %>
+                  <td><%= regDate %></td>
                 </tr>
 
               </tbody>
@@ -48,6 +54,9 @@
 
          <span><h1><b>Exeat Status</b></h1></span>
          <div class="regTable-info">
+            <% if(typeof exeatInfo === 'string' ) {%>
+                  <span class="exeatMessage"><%= exeatInfo %></span>
+                  <% }else{ %>
             <table>
               <thead>
                 <tr>
@@ -56,31 +65,53 @@
                   <th>Request Type</th>
                   <th>Request status</th>
                   <th>Student status</th>
-                  <th>Date of Entry</th>
+                  <th>Indicator</th>
+                  <th>Date of Leave</th>
+                  <th>Date of Return</th>
                 </tr>
               </thead>
-              <!-- <tbody>
+              <tbody>
                 <tr>
                   <td><%= exeatInfo.student.StudentName %></td>
                   <td><%= exeatInfo.type %></td>
                   <% if(exeatInfo.status === 'pending'){ %>
                      <td style="color:#FBC02D; font-weight: 600;"><%= exeatInfo.status%>...  </td>
+                     <td>active</td>
+                     <td><span class="indicator green"></span></td>
                   <% }else{ %>
                      <td style="color: #388E3C; font-weight: 600; "><%= exeatInfo.status%></td>
+                     <td>inactive</td>
+                     <td><span class="indicator red"></span></td>
                     <% } %>
-                  <td>inactive</td>
-                  <td>currentDate()</td>
+                    
+                  <td><%= exDate[0] %></td>
+                  <td><%= exDate[1]%></td>
 
                 </tr>
 
-              </tbody> -->
+              </tbody>
             </table>
+            <% } %>
           </div>
         </div>
 
             </form>
 
         </div>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+      const indicators = document.querySelectorAll('.indicator');
+
+    indicators.forEach(indicator => {
+    if (indicator.parentElement.classList.contains('green')) {
+      indicator.classList.add('green');
+    } else if (indicator.parentElement.classList.contains('red')) {
+      indicator.classList.add('red');
+    }
+  });
+});
+        </script>
 
     </body>
 </html>

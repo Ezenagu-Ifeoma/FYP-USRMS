@@ -12,23 +12,24 @@
 
     <body>
         <!-- sidebar -->
-        <div class="sidebar ">
-            <a href="#" class="logo">
-                <i class='fas fa-school'></i>
-                <div class="logo-name"><span>UHMS</span></div>
-            </a>
+        <div class="sidebar">
+            <div class="logo">
+                SRES
+            </div>
+            <hr color="#0f0f0f">
 
             <ul class="side-menu">
-                <li><a href="/admin"> <i
-                            class="fas fa-tachometer-alt"></i>Dashboard</a></li>
-                <li><a href="#"><i
+                <li><a class="nav-link active" href="/admin"> <i
+                            class='fas fa-tachometer-alt'></i>Dashboard</a></li>
+                <li><a class="nav-link" href="/admin-exeatReq"><i
                             class='fas fa-code-pull-request'></i>Requests</a></li>
-                <li><a href="/admin-studentReq"><i
+                <li><a class="nav-link" href="/admin-studentReq"><i
                             class='fas fa-user'></i>Student</a></li>
-                <li><a href="#"><i
+                <li><a class="nav-link" href="#"><i
                             class='fas fa-cog'></i>Setting</a></li>
 
             </ul>
+
             <ul class="side-menu out">
                 <li><a href="/login " class="logout"><i
                             class='fas fa-arrow-right-from-bracket'></i>Logout</a>
@@ -40,7 +41,6 @@
         <!-- NavBar -->
         <div class="content">
             <nav>
-                <i class="fas fa-bars"></i>
                 <form action>
                     <div class="form-input">
                     </div>
@@ -53,12 +53,34 @@
                     <span class="count">12</span>
                 </a>
                 <a href="#" class="profile">
-                    <img src="/images/go.png" alt>
+                    <img src="/images/avatar-8.png" alt>
                 </a>
             </nav>
         </div>
         <!-- end of navbar -->
-        <script src="script.js"></script>
+        <script>
+             const navLinks = document.querySelectorAll('.nav-link');
+
+        function handleNavLinkClick(event) {
+            // Prevent default link behavior
+        
+
+            // Remove active class from all nav links and their parent li elements
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                link.parentElement.classList.remove('active');
+            });
+
+            // Add active class to the clicked nav link and its parent li element
+            this.classList.add('active');
+            this.parentElement.classList.add('active');
+        }
+
+        // Attach click event listener to each nav link
+        navLinks.forEach(link => {
+            link.addEventListener('click', handleNavLinkClick);
+        });
+        </script>
     </body>
 
 </html>

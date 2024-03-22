@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>admin</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    </head>
+    <body>
+        <%- include('Layout/admin-sidebar' ) %>
+
+        <div class="holder">
+            <form action class="adminRequestForm">
+                <div class="top">
+                    <span><h1><b>Exeat Requests</b></h1></span>
+                </div>
+                <div class="adminRequestTable-info">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID</th>
+                                <th>Student Name</th>
+                                <th>Programme </th>
+                                <th>Level</th>
+                                <th>letter</th>
+                                <th>LeaveDate</th>
+                                <th>ReturnDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsExBody">
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <div class="popup-container">
+                <div class="popup">
+                    <header>Student Information</header>
+                    <footer>
+                        <div class="split1">
+                            <span><b>Name:</b>
+                                <%=//exeatData[0].student.StudentName%></span>
+                            <span><b>MatricNo:</b>
+                                <%=//exeatData[0].student.MatricNo%></span>
+                            <span><b>Programme:</b>
+                                <%=//exeatData[0].student.Programme%></span>
+                            <span><b>Level:</b>
+                                <%=//exeatData[0].student.EntryLevel%></span>
+                        </div>
+                        <div class="split2">
+                            <span><b>Phone No:</b> </span>
+                            <span><b>Parents No:</b> </span>
+                            <span><b>Address:</b>
+                                <%=//exeatData[0].student.Address%></span>
+                            <span><b>Days:</b> 2 </span>
+
+                        </div>
+
+                    </footer>
+                    <div class="travel">
+                        <b>TravelPurpose: </b>
+                        <%= //exeatData.reason %>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+
+                //get all reequests from database
+          function getAllStudents() {
+            axios({
+            method: 'get',
+            url: '/admin-exeatAllReq'
+            
+        })
+                .then(response => {
+                    exInfo = response.data.exeatData
+                    updateTable(exInfo);
+                })
+                .catch((err) => {
+                    console.log('Error fetching data:', err);
+                });
+        }
+        // Call this function on page load to populate the table initially
+        getAllStudents();
+
+
+
+        // Define formatDate function globally
+   function formatDate(date) {
+    if (!date) return ''; // Return empty string if date is null or undefined
+    
+    if (!(date instanceof Date)) {
+        // Convert date string to Date object if it's not already
+        date = new Date(date);
+        if (isNaN(date.getTime())) {
+            // Invalid date string, return empty string
+            return '';
+        }
+    }
+    
+    return date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+    }).split(" ").join(" - ");
+}
+
+// Function to update the table with student data
+function updateTable(data) {
+    const tableBody = document.getElementById('studentsExBody');
+    tableBody.innerHTML = ''; // Clear existing rows
+    
+    data.forEach((student, index) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${student.student.MatricNo}</td>
+            <td>${student.student.StudentName}</td>
+            <td>${student.student.Programme}</td>
+            <td>${student.student.EntryLevel}</td>
+            <td><button class="letter-btn" data-url="${student.letterFileUrl}">ClickLetter</button></td>
+            <td>${formatDate(student.startDate)}</td>
+            <td>${formatDate(student.endDate)}</td>
+            <td>
+                <div class="action">
+                    <button class="approve" data-student-id="${student._id}">Approve</button>
+                    <button class="reject" data-student-id="${student._id}">Reject</button>
+                </div>
+            </td>
+        `;
+        tableBody.appendChild(row);
+
+        // Add event listeners for approve and reject buttons in each row
+        row.querySelector('.approve').addEventListener('click', (e) => {
+            e.preventDefault();
+            const button = e.target;
+            const studentId = button.getAttribute('data-student-id');
+            const rowData = getClickedRowData(button);
+            approvedStudent(rowData, studentId, button);
+        });
+
+        row.querySelector('.reject').addEventListener('click', (e) => {
+            e.preventDefault();
+            const button = e.target;
+            const studentId = button.getAttribute('data-student-id');
+            const rowData = getClickedRowData(button);
+            rejectedStudent(rowData, studentId, button);
+        });
+    });
+}
+
+// Function to get clicked row data
+function getClickedRowData(button) {
+    const row = button.closest('tr');
+    const rowData = {
+        id: button.getAttribute('data-student-id'),
+        matricNo: row.cells[1].textContent.trim(),
+        name: row.cells[2].textContent.trim(),
+        programme: row.cells[3].textContent.trim(),
+        level: row.cells[4].textContent.trim(),
+    };
+    return rowData;
+}
+
+// Function to handle approval
+function approvedStudent(rowData, studentId, button) {
+    button.disabled = true; // Disable the button during the request
+    axios({
+        method: 'post',
+        url: '/approveStudents',
+        data: { rowData, studentId }
+    })
+    .then(response => {
+        console.log('Student approved successfully:', response.data);
+        button.disabled = false; // Enable the button after successful approval
+    })
+    .catch(error => {
+        console.error('Error approving student:', error);
+        button.disabled = false; // Enable the button in case of error
+    });
+}
+
+// Function to handle rejection
+function rejectedStudent(rowData, studentId, button) {
+    button.disabled = true; // Disable the button during the request
+    axios({
+        method:'post',
+        url:'/rejectStudents',
+        data: { rowData, studentId }
+    })
+    .then(response => {
+        console.log('Student rejected successfully:', response.data);
+        button.disabled = false; // Enable the button after successful rejection
+    })
+    .catch(error => {
+        console.error('Error rejecting student:', error);
+        button.disabled = false; // Enable the button in case of error
+    });
+}
+
+
+
+    const clickLetterButtons = document.querySelectorAll('.letter-btn');    
+    clickLetterButtons.forEach(button=> {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent the default link behavior
+            
+            const pdfUrl = button.getAttribute('data-url');
+            consokle.log(pdfUrl)
+            if (pdfUrl) {
+                console.log(pdfUrl)
+                viewPDF(pdfUrl); 
+            } else {
+                console.error('PDF URL not found.');
+            }
+        });
+    });
+
+
+
+ function viewPDF(pdfUrl) {
+         axios({
+    method: 'get',
+    url: `/getPDF?url=${encodeURIComponent(pdfUrl)}`,
+    responseType: 'blob'
+})
+.then(response => {
+    // Create a blob URL for the PDF content
+    const blob = new Blob([response.data], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+
+    // Open the PDF content in a new tab
+    window.open(url, '_blank');
+})
+.catch(error => {
+    console.error('Error fetching PDF:', error);
+    // Handle error (display error message, etc.)
+});
+        }
+        </script>
+    </body>
+</html>

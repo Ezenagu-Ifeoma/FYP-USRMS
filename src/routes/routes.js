@@ -4,7 +4,7 @@ const path = require('path')
 const router = express.Router();
 const { newStudent, newAdmin, newSchool, validateUser, studentInfo, studentDashboardInfo, adminDashboardInfo, statusInfo, adminRegistrationInfo, searchStudent, adminGetAllStudent } = require('../controllers/userInfoController')
 const { newResidence, regStudent, signedStudents } = require('../controllers/residenceController');
-const { exeatInfo, exeatRequest } = require('../controllers/exeatController')
+const { exeatInfo, exeatRequest, adminExeatReqInfo, adminGetAllExeatReq, approveStudents, rejectStudents, getStudentPdf } = require('../controllers/exeatController')
 
 router.post('/api/residenceInfo', newResidence)
 router.post('/api/adminInfo', newAdmin)
@@ -36,7 +36,9 @@ router.post('/regStudent', regStudent)
 
 
 router.post("/exeatRequest", exeatRequest);
-router.post('/signedStudents', signedStudents)
+router.post('/signedStudents', signedStudents);
+router.post('/approveStudents', approveStudents);
+router.post('/rejectStudents', rejectStudents)
 
 
 // router.post('/exeatRequest', upload.single('signedFile'), exeatRequest)
@@ -47,8 +49,11 @@ router.get('/student', studentInfo)
 router.get('/exeat', exeatInfo)
 router.get('/status', statusInfo)
 router.get('/admin-studentReq', adminRegistrationInfo)
+router.get('/admin-exeatReq', adminExeatReqInfo)
+router.get('/admin-exeatAllReq', adminGetAllExeatReq)
 router.get('/admin-studentAll', adminGetAllStudent)
 router.get('/search', searchStudent)
+router.get('getPDF', getStudentPdf)
 
 
 

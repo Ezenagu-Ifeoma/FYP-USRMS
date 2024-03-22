@@ -1,17 +1,31 @@
-    <!DOCTYPE html>
-    <html lang="en">
+ <!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
     </head>
     <body>
-        <%- include('layout/sideBar')  %>
+        <%- include('layout/sideBar') %>
         <div class="holder">
-            <h1> DASHBOARD UNDER CONSTRUCTION</h1>
+            <div class="contain">
+                <h2>Dashboard</h2>
+                <div class="dashSection1">
+                    <div class="ds1">
+                        <span class="greet">Hello <%= student %>!</span>
+                        <b>Its good to See you Again</b>
+                    </div>
+                    <div class="dsimage">
+                        <img src="/images/avatar-8.png" alt>
+                    </div>
+                </div>
+                <h2>Notification</h2>
+                <div class="dashSection2">
+                    <b>No notifications available check later</b>
+                </div>
+            </div>
+
         </div>
-        
-      
-        
+
     </body>
-    </html>
+</html>

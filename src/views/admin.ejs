@@ -26,30 +26,29 @@
 
         <div class="holder">
             <div class="adminContainer">
-                <div class="studentBoard">
-                    <div class="boxInfo">
-                        <span>
-                            Registered Student
-                        </span>
+                <div class="adminInfo1"></div>
+                <div class="adminInfo2">
+                    <span>Hall Information</span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Registered Students</th>
+                                <th>Available Space</th>
+                                <th>Active Students </th>
+                                <th>Inactive Students</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsExBody">
+                            <td>1</td>
+                            <td><%= totalStudents %></td>
+                            <td><%= space %></td>
+                            <td></td>
+                        </tbody>
+                    </table>
 
-                        <span
-                            style="color:#388E3C;font-size: xx-large;font-weight: 800; "><%=
-                            totalStudents %> </span>
-                    </div>
-                    <div class="boxInfo">
-                        <span>
-                            Available Space
-                        </span>
-                        <span
-                            style="color:#388E3C;font-size: xx-large;font-weight: 800; "><%=
-                            space
-                            %>
-                        </span>
-                    </div>
-                    <div class="boxInfo"></div>
-                    <div class="boxInfo"></div>
                 </div>
-
             </div>
 
         </div>
